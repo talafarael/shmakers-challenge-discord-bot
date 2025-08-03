@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { ConfigError } from "../utils/variableErrror";
+import { ConfigError } from "../utils/variable-errror";
 
 dotenv.config();
 
