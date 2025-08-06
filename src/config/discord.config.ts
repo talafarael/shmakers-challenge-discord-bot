@@ -1,12 +1,12 @@
 import dotenv from "dotenv";
-import { ConfigError } from "../utils/variable-errror";
+import { ConfigDiscordError } from "../utils";
 
 dotenv.config();
 
 const { DISCORD_CLIENT_SECRET, DISCORD_CLIENT_ID } = process.env;
 
 if (!DISCORD_CLIENT_SECRET || !DISCORD_CLIENT_ID) {
-  throw ConfigError()
+  throw ConfigDiscordError()
 }
 
 export const disocrdConfig = {

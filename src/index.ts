@@ -1,22 +1,18 @@
 import { Client } from "discord.js";
-import { config } from "./config";
 import { connectDb } from "./db";
 import { listeners } from "./listeners";
-import { deployCommands } from "./registerCommands";
+import { dbConfig, disocrdConfig } from "./config";
+import { deployCommands } from "./utils/deployCommands";
 
 export const client = new Client({
   intents: ["Guilds", "GuildMessages", "DirectMessages", "MessageContent"],
 });
-client.once("ready", () => {
+client.once("ready", async () => {
   console.log("Discord bot is ready! 🤖");
+  await deployCommands();
 });
 
-client.on("guild", async (guild) => {
-  console.log('wotrk')
-  await deployCommands({ guildId: guild.id });
-});
 client.on("interactionCreate", async (interaction) => {
-  console.log("hey")
   if (!interaction.isCommand()) {
     return;
   }
@@ -25,5 +21,10 @@ client.on("interactionCreate", async (interaction) => {
     listeners[commandName as keyof typeof listeners].execute(interaction);
   }
 });
-//connectDb({ url: config.MONGODB_URI })
-client.login(config.DISCORD_CLIENT_SECRET);
+connectDb({ url: dbConfig.DATABASE_URL })
+  .then(() => console.log("Database successfully connected"))
+  .catch((e) => {
+    console.log(e)
+    throw e
+  })
+client.login(disocrdConfig.DISCORD_CLIENT_SECRET);

@@ -1,2 +1,4 @@
-export interface DBConnection { url: string }
+export interface DBConnection {
+  url: string
+}
 

@@ -1,11 +1,7 @@
-import { dbConfig } from "./db.config";
-import { disocrdConfig } from "./discord.config";
+export * from "./db.config";
+export * from "./discord.config";
 
 
-export const config = {
-  ...disocrdConfig,
-  // ...dbConfig
-};
 
 
 

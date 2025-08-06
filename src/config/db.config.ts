@@ -1,13 +1,14 @@
 import dotenv from "dotenv";
+import { ConfigDatabseError } from "../utils";
 
 dotenv.config();
 
-const { MONGODB_URI } = process.env;
+const { DATABASE_URL } = process.env;
 
-if (!MONGODB_URI) {
-  throw new Error("Missing environment db variables");
+if (!DATABASE_URL) {
+  throw ConfigDatabseError()
 }
 
 export const dbConfig = {
-  MONGODB_URI
+  DATABASE_URL
 };
