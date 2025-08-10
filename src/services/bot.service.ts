@@ -1,6 +1,6 @@
 import { Bot } from "../model";
 import { CreateBotDto, InitBotDto } from "../dto/bot.dto";
-import { BotCreateError, BotGuildNotFoundError, BotWasInitInthisServerError } from "../utils";
+import { BotCreateError, BotGuildNotFoundError, BotWasInitInThisServerError } from "../utils";
 import { Types } from "mongoose";
 
 export const initBot = async ({ interaction }: InitBotDto) => {
@@ -11,7 +11,7 @@ export const initBot = async ({ interaction }: InitBotDto) => {
   try {
     const existingBot = await Bot.findOne({ guidId: interaction.guildId });
     if (existingBot) {
-      throw BotWasInitInthisServerError()
+      throw BotWasInitInThisServerError()
     }
     await createBot({
       guildId: interaction.guildId

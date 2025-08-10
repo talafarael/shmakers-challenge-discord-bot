@@ -1,2 +1,3 @@
-export * from "./bot";
+export { initBotMessage } from "./bot";
+export { sendTodayKataMessage } from "./daily-challenge"
 

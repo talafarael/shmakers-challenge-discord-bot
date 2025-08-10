@@ -3,6 +3,7 @@ import { connectDb } from "./db";
 import { listeners } from "./listeners";
 import { dbConfig, disocrdConfig } from "./config";
 import { deployCommands } from "./utils/deployCommands";
+import { serverStarter } from "./server-starter";
 
 export const client = new Client({
   intents: ["Guilds", "GuildMessages", "DirectMessages", "MessageContent"],
@@ -27,4 +28,8 @@ connectDb({ url: dbConfig.DATABASE_URL })
     console.log(e)
     throw e
   })
+
+//server runner
+serverStarter()
+
 client.login(disocrdConfig.DISCORD_CLIENT_SECRET);
