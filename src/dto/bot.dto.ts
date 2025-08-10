@@ -1,4 +1,3 @@
-import { initBot } from "../services/bot.service"
 import { InitBotOptions } from "../types/init-bot-options"
 
 export interface CreateBotDto {
