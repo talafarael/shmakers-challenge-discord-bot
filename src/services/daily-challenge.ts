@@ -1,7 +1,9 @@
 import { Types } from "mongoose";
 import { BotNotFoundError, DefaultError, sendTodayKataMessage } from "@/utils";
-import { Bot, DailyChallenge, DailyChallengeDocument } from "@/model";
+import { Bot, DailyChallenge } from "@/model";
 import { CreateDailyChallengeDto } from "@/dto";
+import { IDailyChallenge } from "@/model/schemas/challenge-daily.schema";
+import { initChanel } from "./channel.service";
 
 export const createDailyChallenge = async (body: CreateDailyChallengeDto) => {
   try {
@@ -24,15 +26,22 @@ export const createDailyChallenge = async (body: CreateDailyChallengeDto) => {
     throw DefaultError()
   }
 }
+
 export const sendTodaysKata = async () => {
   const todaysChallenge = await getAllTodaysDailyChallenge()
+  console.log(todaysChallenge)
   const promisesSendTodaysChallenge = todaysChallenge.map(async (elem) => {
-    sendTodayKataMessage({ url: elem.urlKata })
+    sendTodayKataMessage({ message: elem.messageKata ?? elem.urlKata })
+    const channel = await initChanel({
+      guildId: elem.botId.guildId,
+      channelId: elem.botId.channelId
+    })
 
   })
-  const results = await Promise.all(promisesSendTodaysChallenge);
+  await Promise.all(promisesSendTodaysChallenge);
 }
-export const getAllTodaysDailyChallenge = async (): Promise<DailyChallengeDocument[]> => {
+
+const getAllTodaysDailyChallenge = async (): Promise<IDailyChallenge[]> => {
   const start = new Date()
   start.setHours(0, 0, 0, 0)
 

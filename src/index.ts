@@ -11,25 +11,26 @@ export const client = new Client({
 client.once("ready", async () => {
   console.log("Discord bot is ready! 🤖");
   await deployCommands();
-});
 
-client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isCommand()) {
-    return;
-  }
-  const { commandName } = interaction;
-  if (listeners[commandName as keyof typeof listeners]) {
-    listeners[commandName as keyof typeof listeners].execute(interaction);
-  }
-});
-connectDb({ url: dbConfig.DATABASE_URL })
-  .then(() => console.log("Database successfully connected"))
-  .catch((e) => {
-    console.log(e)
-    throw e
-  })
 
+  client.on("interactionCreate", async (interaction) => {
+    if (!interaction.isCommand()) {
+      return;
+    }
+    const { commandName } = interaction;
+    if (listeners[commandName as keyof typeof listeners]) {
+      listeners[commandName as keyof typeof listeners].execute(interaction);
+    }
+  });
+  connectDb({ url: dbConfig.DATABASE_URL })
+    .then(() => console.log("Database successfully connected"))
+    .catch((e) => {
+      console.log(e)
+      throw e
+    })
+  serverStarter()
+
+});
 //server runner
-serverStarter()
 
 client.login(disocrdConfig.DISCORD_CLIENT_SECRET);

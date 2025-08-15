@@ -15,7 +15,8 @@ export interface IDailyChallenge {
   urlKata: string;
   description?: string;
   hint?: string[];
-  botId: Types.ObjectId | BotDocument;
+  messageKata: string
+  botId: BotDocument;
 }
 export type DailyChallengeDocument = IDailyChallenge & Document;
 

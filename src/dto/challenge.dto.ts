@@ -1,3 +1,3 @@
 export interface ChallengeMessageDto {
-  url: string
+  message: string
 }

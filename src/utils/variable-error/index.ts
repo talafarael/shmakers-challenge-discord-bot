@@ -11,3 +11,4 @@ export {
   BotNotFoundError
 } from "./bot";
 export { DefaultError } from "./error"
+export { ChannelNotFoundError } from "./channel"

@@ -4,4 +4,5 @@ export interface CreateDailyChallengeDto {
   description?: string
   hint: string[]
   botId: string
+  messageKata: string
 }

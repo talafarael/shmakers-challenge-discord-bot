@@ -2,6 +2,7 @@ import { Bot } from "../model";
 import { CreateBotDto, InitBotDto } from "../dto/bot.dto";
 import { BotCreateError, BotGuildNotFoundError, BotWasInitInThisServerError } from "../utils";
 import { Types } from "mongoose";
+import { initChanel } from "./channel.service";
 
 export const initBot = async ({ interaction }: InitBotDto) => {
   if (!interaction?.guildId) {
@@ -13,8 +14,10 @@ export const initBot = async ({ interaction }: InitBotDto) => {
     if (existingBot) {
       throw BotWasInitInThisServerError()
     }
+
     await createBot({
-      guildId: interaction.guildId
+      guildId: interaction.guildId,
+      channelId: interaction.channelId
     })
   } catch (e) {
     if (e instanceof Error) {
@@ -24,12 +27,14 @@ export const initBot = async ({ interaction }: InitBotDto) => {
   }
 }
 const createBot = async ({
-  guildId
+  guildId,
+  channelId
 }: CreateBotDto) => {
 
   const bot = new Bot({
     _id: new Types.ObjectId(),
-    guidId: guildId
+    guildId: guildId,
+    channelId: channelId
   })
   console.log(bot)
   return await bot.save()
