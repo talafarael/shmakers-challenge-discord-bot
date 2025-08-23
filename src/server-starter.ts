@@ -1,12 +1,12 @@
 import express, { Request, Response } from 'express'
 import { CreateDailyChallengeDto } from './dto'
-import { createDailyChallenge, sendTodaysKata } from './services/daily-challenge'
+import { sendTodaysKata } from './services/daily-challenge'
+import { createDailyChallenge } from './repository'
 export const serverStarter = async () => {
   const app = express()
   app.use(express.json());
   app.post('/create-dailly-challenge', async (req: Request<{}, {}, CreateDailyChallengeDto>, res: Response) => {
     try {
-      console.log(req.body)
       const resCreate = await createDailyChallenge(req.body)
       res.status(200).json(resCreate)
     } catch (error) {
