@@ -1,6 +1,6 @@
-import { CommandInteraction, SlashCommandBuilder } from "discord.js";
-import { initBotMessage } from "../utils";
-import { initBot } from "../services";
+import { CommandInteraction, InteractionReplyOptions, MessagePayload, SlashCommandBuilder } from "discord.js";
+import { DefaultError, initBotMessage } from "../utils";
+import { initBot, joinParticipantHelper } from "../services";
 import { initErrorBotMessage } from "@/utils/message-bot/bot";
 
 export const data = new SlashCommandBuilder()
@@ -10,11 +10,18 @@ export const data = new SlashCommandBuilder()
 export async function execute(interaction: CommandInteraction) {
   try {
     await initBot({ interaction })
-    await interaction.reply(initBotMessage())
+    const initMessage = await interaction.reply({ content: initBotMessage(), fetchReply: true })
+    await initMessage.pin();
+
+    const messages = joinParticipantHelper();
+    for (const msg of messages) {
+      await interaction.followUp(msg);
+    }
   } catch (e) {
     if (e instanceof Error) {
       return await interaction.reply(initErrorBotMessage(e.message))
     }
-    return await interaction.reply(initErrorBotMessage("Упс щось трапилося"));
+    const error = DefaultError();
+    return await interaction.reply(initErrorBotMessage(error.message));
   }
 }

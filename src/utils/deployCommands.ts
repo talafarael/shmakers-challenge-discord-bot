@@ -10,15 +10,14 @@ const rest = new REST({ version: "10" }).setToken(disocrdConfig.DISCORD_CLIENT_S
 export async function deployCommands() {
   try {
     console.log("Started refreshing global application (/) commands.");
-
     await rest.put(
       Routes.applicationCommands(disocrdConfig.DISCORD_CLIENT_ID),
       {
         body: commandsData,
       },
     );
+    console.log(commandsData)
 
-    console.log("Successfully reloaded global application (/) commands.");
   } catch (error) {
     console.error(error);
   }

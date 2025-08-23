@@ -1,3 +1,5 @@
 export { CreateDailyChallengeDto } from "./create-daily-challenge.dto"
 export { InitChannelBotDto } from "./channel.dto"
-
+export { UpdateParticipantDiscordDto, CreateParticipantDto } from "./participant.dto"
+export { JoinParticipantDto } from "./join-participant.dto"
+export { InitBotDto, CreateBotDto } from "./bot.dto"

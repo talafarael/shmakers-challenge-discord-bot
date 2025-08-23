@@ -1,12 +1,12 @@
 import dotenv from "dotenv";
-import { ConfigDatabseError } from "../utils";
+import { ConfigError } from "../utils";
 
 dotenv.config();
 
 const { DATABASE_URL } = process.env;
 
 if (!DATABASE_URL) {
-  throw ConfigDatabseError()
+  throw ConfigError("databse url")
 }
 
 export const dbConfig = {

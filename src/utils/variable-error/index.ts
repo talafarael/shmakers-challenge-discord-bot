@@ -1,8 +1,6 @@
 export { DBConnectError } from "./db"
 export {
-  ConfigDiscordError,
-  ConfigDatabseError
-
+  ConfigError
 } from "./config"
 export {
   BotGuildNotFoundError,
@@ -11,4 +9,6 @@ export {
   BotNotFoundError
 } from "./bot";
 export { DefaultError } from "./error"
-export { ChannelNotFoundError } from "./channel"
+export { ChannelNotFoundError, DoesntChannelError, ChannelNotInitError } from "./channel"
+export { CodeWarsUserNotFoundError } from "./code-wars"
+export { ParticipantWasCreatedError, EmptyNameError } from "./participant"
