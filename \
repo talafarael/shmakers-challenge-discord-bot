@@ -3,12 +3,13 @@ import { ConfigError } from "../utils";
 
 dotenv.config();
 
-const { DATABASE_URL } = process.env;
+const { HOSTING_URL } = process.env;
 
-if (!DATABASE_URL) {
+if (!HOSTING_URL) {
   throw ConfigError
 }
 
-export const dbConfig = {
-  DATABASE_URL
+export const hostingConfig = {
+  HOSTING_URL
 };
+

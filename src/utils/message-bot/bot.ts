@@ -1,7 +1,6 @@
 // need change message
 export const initBotMessage = () => {
-  return {
-    content: `👋 Вітаємо
+  return `👋 Вітаємо
 
 Ти приєднався до **щоденного виклику Shmakers**! 💻  
 Щодня бот публікує нове завдання з **Codewars**.  
@@ -13,9 +12,8 @@ export const initBotMessage = () => {
 📎 Якщо тобі потрібна підказка — просто напиши “підказка” у чат.  
 ⚠️ Пам’ятай: за підказки знімаються бали при підрахунку нагороди.
 
-Успіхів, майбутній майстре коду! 🚀`,
-    ephemeral: false
-  }
+Успіхів, майбутній майстре коду! 🚀`
+
 }
 export const initErrorBotMessage = (e: string) => {
   return {
