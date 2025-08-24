@@ -15,7 +15,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   try {
     const usernameCodeWars = interaction?.options.getString('code_wars_username');
     if (!usernameCodeWars) {
-      throw EmptyNameError()
+      throw EmptyNameError
     }
     await joinParticipant({
       interaction,
@@ -28,7 +28,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     if (e instanceof Error) {
       return await interaction.reply(initErrorBotMessage(e.message))
     }
-    const error = DefaultError();
+    const error = DefaultError
     return await interaction.reply(initErrorBotMessage(error.message));
 
   }

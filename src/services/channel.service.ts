@@ -15,7 +15,7 @@ export const initChanel = async ({
   let channel: Channel | null = guild.channels.cache.get(channelId) || await guild.channels.fetch(channelId);
 
   if (!channel || !(channel instanceof TextChannel)) {
-    throw ChannelNotFoundError();
+    throw ChannelNotFoundError
   }
 
   return channel;

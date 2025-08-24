@@ -11,7 +11,7 @@ export const createDailyChallenge = async (body: CreateDailyChallengeDto) => {
       _id: new Types.ObjectId(botId)
     })
 
-    if (!bot) throw BotNotFoundError()
+    if (!bot) throw BotNotFoundError
     return await DailyChallenge.create({
       _id: new Types.ObjectId(),
       date: new Date(date).toISOString(),
@@ -22,7 +22,7 @@ export const createDailyChallenge = async (body: CreateDailyChallengeDto) => {
     if (e instanceof Error) {
       throw e
     }
-    throw DefaultError()
+    throw DefaultError
   }
 }
 export const getAllTodaysDailyChallenge = async (): Promise<IDailyChallenge[]> => {

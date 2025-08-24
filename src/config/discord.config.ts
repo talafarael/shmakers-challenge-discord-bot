@@ -6,7 +6,7 @@ dotenv.config();
 const { DISCORD_CLIENT_SECRET, DISCORD_CLIENT_ID } = process.env;
 
 if (!DISCORD_CLIENT_SECRET || !DISCORD_CLIENT_ID) {
-  throw ConfigError("discord")
+  throw ConfigError
 }
 
 export const disocrdConfig = {

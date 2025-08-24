@@ -6,7 +6,7 @@ dotenv.config();
 const { DATABASE_URL } = process.env;
 
 if (!DATABASE_URL) {
-  throw ConfigError("databse url")
+  throw ConfigError
 }
 
 export const dbConfig = {

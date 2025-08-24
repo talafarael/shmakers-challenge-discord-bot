@@ -9,19 +9,19 @@ export const joinParticipant = async ({
 }: JoinParticipantDto) => {
   try {
     if (!interaction.guildId) {
-      throw DoesntChannelError()
+      throw DoesntChannelError
     }
     const codeWarsUser = await getUserbyCodeWars(usernameCodeWars)
     if ("reason" in codeWarsUser) {
-      throw CodeWarsUserNotFoundError()
+      throw CodeWarsUserNotFoundError
     }
     const participant = await findParticipantByUsernameCodewars(usernameCodeWars)
     if (participant) {
-      throw ParticipantWasCreatedError()
+      throw ParticipantWasCreatedError
     }
     const channel = await findBotByGuildId(interaction.guildId)
     if (!channel) {
-      throw ChannelNotInitError()
+      throw ChannelNotInitError
     }
     const userData = {
       codeWars: {

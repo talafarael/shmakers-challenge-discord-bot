@@ -21,7 +21,7 @@ export async function execute(interaction: CommandInteraction) {
     if (e instanceof Error) {
       return await interaction.reply(initErrorBotMessage(e.message))
     }
-    const error = DefaultError();
+    const error = DefaultError
     return await interaction.reply(initErrorBotMessage(error.message));
   }
 }
