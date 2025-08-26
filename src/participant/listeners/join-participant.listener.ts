@@ -1,5 +1,5 @@
 import { DefaultError, EmptyNameError, joinParticipant as joinParticipantMessage } from "@/utils";
-import { initErrorBotMessage } from "@/utils/message-bot/bot";
+import { initErrorBotMessage } from "@/bot/bot-messages/bot";
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 import { joinParticipant } from "@/services"
 export const data = new SlashCommandBuilder()

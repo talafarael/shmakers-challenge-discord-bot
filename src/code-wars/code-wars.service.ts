@@ -11,3 +11,7 @@ export const getUserKata = async (userData: string): Promise<KataListResponse> =
   return await response.json()
 }
 
+export const webHookCodeWars = async (data: WebHookCodeWarsDto) => {
+  if (data.action != "honor_changed") return
+  const user = await getUserKata(data.user.id)
+}

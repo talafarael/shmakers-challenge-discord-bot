@@ -1,4 +1,4 @@
-import { ChallengeMessageDto } from "@/dto/challenge.dto";
+import { ChallengeMessageDto } from "@/dailly-challenge/dto/challenge.dto";
 
 //need chagne
 export const sendTodayKataMessage = ({ message }: ChallengeMessageDto) => {

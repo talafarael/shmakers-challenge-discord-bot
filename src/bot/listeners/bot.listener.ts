@@ -1,7 +1,7 @@
 import { CommandInteraction, InteractionReplyOptions, MessagePayload, SlashCommandBuilder } from "discord.js";
 import { DefaultError, initBotMessage } from "../utils";
 import { initBot, joinParticipantHelper } from "../services";
-import { initErrorBotMessage } from "@/utils/message-bot/bot";
+import { initErrorBotMessage } from "@/bot/bot-messages/bot";
 
 export const data = new SlashCommandBuilder()
   .setName("init")
