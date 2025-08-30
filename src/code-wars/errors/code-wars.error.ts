@@ -1,3 +1,3 @@
-export const CodeWarsUserNotFoundError = new Error(`Code wars user not found`);
+export const CodeWarsUserNotFoundError = `Code wars user not found`
 
 

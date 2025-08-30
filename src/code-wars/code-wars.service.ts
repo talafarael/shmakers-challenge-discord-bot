@@ -1,4 +1,5 @@
-import { CodewarsUser, ICodeWarsUserNotfound, KataListResponse } from "@/model/model/code-wars.model";
+import { WebHookCodeWarsDto } from "./dto/web-hook-code-wars.dto";
+import { CodewarsUser, ICodeWarsUserNotfound, KataListResponse } from "./model/code-wars.model";
 
 // userData -its name or id
 export const getUserbyCodeWars = async (userData: string): Promise<ICodeWarsUserNotfound | CodewarsUser> => {

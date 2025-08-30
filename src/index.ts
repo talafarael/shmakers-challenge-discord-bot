@@ -1,9 +1,9 @@
 import { Client } from "discord.js";
 import { connectDb } from "./db";
-import { listeners } from "./listeners";
 import { dbConfig, disocrdConfig } from "./config";
 import { deployCommands } from "./utils/deployCommands";
 import { serverStarter } from "./server-starter";
+import { listeners } from "./listeners";
 
 export const client = new Client({
   intents: ["Guilds", "GuildMessages", "DirectMessages", "MessageContent"],

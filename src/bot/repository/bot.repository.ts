@@ -1,6 +1,6 @@
-import { CreateBotDto } from "@/dto"
-import { Bot } from "@/model";
 import { Types } from "mongoose";
+import { CreateBotDto } from "../dto/bot.dto";
+import { Bot } from "../schema/bot.schema";
 
 export const createBot = async ({
   guildId,

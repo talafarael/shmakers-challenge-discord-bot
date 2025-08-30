@@ -1,8 +1,9 @@
-import { CreateDailyChallengeDto } from "@/dto"
-import { Bot, DailyChallenge } from "@/model"
-import { IDailyChallenge } from "@/model/schemas/challenge-daily.schema"
-import { BotNotFoundError, DefaultError } from "@/utils"
+import { Bot } from "@/bot/schema/bot.schema"
+import { DefaultError } from "@/utils"
 import { Types } from "mongoose"
+import { CreateDailyChallengeDto } from "../dto/create-daily-challenge.dto"
+import { DailyChallenge, IDailyChallenge } from "../schema/daily-challenge.schema"
+import { BotNotFoundError } from "@/bot"
 
 export const createDailyChallenge = async (body: CreateDailyChallengeDto) => {
   try {
@@ -11,7 +12,7 @@ export const createDailyChallenge = async (body: CreateDailyChallengeDto) => {
       _id: new Types.ObjectId(botId)
     })
 
-    if (!bot) throw BotNotFoundError
+    if (!bot) throw new Error(BotNotFoundError)
     return await DailyChallenge.create({
       _id: new Types.ObjectId(),
       date: new Date(date).toISOString(),
@@ -22,7 +23,7 @@ export const createDailyChallenge = async (body: CreateDailyChallengeDto) => {
     if (e instanceof Error) {
       throw e
     }
-    throw DefaultError
+    throw new Error(DefaultError)
   }
 }
 export const getAllTodaysDailyChallenge = async (): Promise<IDailyChallenge[]> => {

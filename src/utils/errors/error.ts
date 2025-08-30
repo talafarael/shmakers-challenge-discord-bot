@@ -1,1 +1,1 @@
-export const DefaultError = new Error("Oops! Something went wrong");
+export const DefaultError = "Oops! Something went wrong";

@@ -1,7 +1,10 @@
-import { DefaultError, EmptyNameError, joinParticipant as joinParticipantMessage } from "@/utils";
+import { DefaultError } from "@/utils";
 import { initErrorBotMessage } from "@/bot/bot-messages/bot";
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
-import { joinParticipant } from "@/services"
+import { joinParticipant } from "../participant.serivce";
+import { joinParticipant as joinParticipantMessage } from "../bot-messages/participant"
+import { EmptyNameError } from "../errors/participant.error";
+
 export const data = new SlashCommandBuilder()
   .setName("join")
   .setDescription("Join participant")
@@ -15,7 +18,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   try {
     const usernameCodeWars = interaction?.options.getString('code_wars_username');
     if (!usernameCodeWars) {
-      throw EmptyNameError
+      throw new Error(EmptyNameError)
     }
     await joinParticipant({
       interaction,
@@ -28,8 +31,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     if (e instanceof Error) {
       return await interaction.reply(initErrorBotMessage(e.message))
     }
-    const error = DefaultError
-    return await interaction.reply(initErrorBotMessage(error.message));
+    return await interaction.reply(initErrorBotMessage(DefaultError));
 
   }
 }

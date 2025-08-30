@@ -1,7 +1,7 @@
-import { InitChannelBotDto } from "@/dto";
 import { Channel, TextChannel } from "discord.js";
 import { client } from "..";
-import { ChannelNotFoundError } from "@/utils";
+import { InitChannelBotDto } from "./dto/channel.dto";
+import { ChannelNotFoundError } from "./errors/channel.error";
 
 export const initChanel = async ({
   guildId,
@@ -15,7 +15,7 @@ export const initChanel = async ({
   let channel: Channel | null = guild.channels.cache.get(channelId) || await guild.channels.fetch(channelId);
 
   if (!channel || !(channel instanceof TextChannel)) {
-    throw ChannelNotFoundError
+    throw new Error(ChannelNotFoundError)
   }
 
   return channel;

@@ -1,6 +1,5 @@
-import { CreateParticipantDto, UpdateParticipantDiscordDto } from "@/dto";
-import { Participant } from "@/model";
-import { IParticipant } from "@/model/schemas/participant.schema";
+import { CreateParticipantDto, UpdateParticipantDiscordDto } from "../dto";
+import { IParticipant, Participant } from "../schema/participant.schema";
 
 export const createParticipantDiscord = async (data: CreateParticipantDto) => {
   return await Participant.create(data);

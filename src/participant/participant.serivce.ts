@@ -1,7 +1,11 @@
-import { JoinParticipantDto } from "@/dto"
-import { getUserbyCodeWars } from "./code-wars-api.service";
-import { ChannelNotInitError, CodeWarsUserNotFoundError, DefaultError, DoesntChannelError, ParticipantWasCreatedError } from "@/utils";
-import { createParticipantDiscord, findBotByGuildId, findParticipantByUsernameCodewars } from "@/repository";
+import { DefaultError, joinParticipantPartOneAboutDiscord, joinParticipantPartOneAboutWebhook } from "@/utils";
+import { JoinParticipantDto } from "./dto";
+import { CodeWarsUserNotFoundError, getUserbyCodeWars } from "@/code-wars";
+import { createParticipantDiscord, findParticipantByUsernameCodewars } from "./repository/participant.repository";
+import { findBotByGuildId } from "@/bot/repository/bot.repository";
+import { AttachmentBuilder, EmbedBuilder, InteractionReplyOptions, MessagePayload } from "discord.js";
+import { ChannelNotInitError, DoesntChannelError } from "@/channel";
+import { ParticipantWasCreatedError } from "./errors/participant.error";
 
 export const joinParticipant = async ({
   interaction,
@@ -9,19 +13,19 @@ export const joinParticipant = async ({
 }: JoinParticipantDto) => {
   try {
     if (!interaction.guildId) {
-      throw DoesntChannelError
+      throw new Error(DoesntChannelError)
     }
     const codeWarsUser = await getUserbyCodeWars(usernameCodeWars)
     if ("reason" in codeWarsUser) {
-      throw CodeWarsUserNotFoundError
+      throw new Error(CodeWarsUserNotFoundError)
     }
     const participant = await findParticipantByUsernameCodewars(usernameCodeWars)
     if (participant) {
-      throw ParticipantWasCreatedError
+      throw new Error(ParticipantWasCreatedError)
     }
     const channel = await findBotByGuildId(interaction.guildId)
     if (!channel) {
-      throw ChannelNotInitError
+      throw new Error(ChannelNotInitError)
     }
     const userData = {
       codeWars: {
@@ -42,7 +46,7 @@ export const joinParticipant = async ({
     if (e instanceof Error) {
       throw e
     }
-    throw DefaultError
+    throw new Error(DefaultError)
 
   }
 }

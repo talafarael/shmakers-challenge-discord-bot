@@ -1,7 +1,8 @@
-import { CommandInteraction, InteractionReplyOptions, MessagePayload, SlashCommandBuilder } from "discord.js";
-import { DefaultError, initBotMessage } from "../utils";
-import { initBot, joinParticipantHelper } from "../services";
-import { initErrorBotMessage } from "@/bot/bot-messages/bot";
+import { CommandInteraction, SlashCommandBuilder } from "discord.js";
+import { initBotMessage, initErrorBotMessage } from "@/bot/bot-messages/bot";
+import { initBot } from "../bot.service";
+import { joinParticipantHelper } from "@/participant/participant.serivce";
+import { DefaultError } from "@/utils";
 
 export const data = new SlashCommandBuilder()
   .setName("init")
@@ -21,7 +22,6 @@ export async function execute(interaction: CommandInteraction) {
     if (e instanceof Error) {
       return await interaction.reply(initErrorBotMessage(e.message))
     }
-    const error = DefaultError
-    return await interaction.reply(initErrorBotMessage(error.message));
+    return await interaction.reply(initErrorBotMessage(DefaultError));
   }
 }

@@ -1,7 +1,7 @@
 import { REST } from "discord.js";
 import { Routes } from "discord-api-types/v10";
 import { disocrdConfig } from "../config";
-import { listeners } from "../listeners";
+import { listeners } from "@/listeners";
 
 const commandsData = Object.values(listeners).map((command) => command.data.toJSON());
 

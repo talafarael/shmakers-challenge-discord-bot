@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express'
-import { CreateDailyChallengeDto } from './dto'
 import { sendTodaysKata } from './daily-challenge/daily-challenge.service'
-import { createDailyChallenge } from './repository'
+import { createDailyChallenge, CreateDailyChallengeDto } from './daily-challenge';
 export const serverStarter = async () => {
   const app = express()
   app.use(express.json());

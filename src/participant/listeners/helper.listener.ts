@@ -1,6 +1,6 @@
-import { joinParticipantHelper } from "@/services";
 import { loadingMessage } from "@/utils";
 import { CommandInteraction, MessagePayload, SlashCommandBuilder } from "discord.js";
+import { joinParticipantHelper } from "../participant.serivce";
 
 export const data = new SlashCommandBuilder()
   .setName("helper")

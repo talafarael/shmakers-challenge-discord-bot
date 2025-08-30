@@ -1,8 +1,6 @@
 import { sendTodayKataMessage } from "@/utils";
-import { initChanel } from "./channel.service";
-import { getAllTodaysDailyChallenge } from "@/repository";
-
-
+import { getAllTodaysDailyChallenge } from "./repository/daily-challenge.repository";
+import { initChanel } from "@/channel";
 
 export const sendTodaysKata = async () => {
   const todaysChallenge = await getAllTodaysDailyChallenge()

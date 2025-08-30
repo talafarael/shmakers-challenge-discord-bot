@@ -1,17 +1,16 @@
-import { InitBotDto } from "@/dto";
-import { BotCreateError, BotGuildNotFoundError, BotWasInitInThisServerError } from "../utils";
-import { createBot } from "@/repository";
-import { Bot } from "@/model";
-
+import { InitBotDto } from "./dto/bot.dto";
+import { BotCreateError, BotGuildNotFoundError, BotWasInitInThisServerError } from "./errors/bot.error";
+import { createBot } from "./repository/bot.repository";
+import { Bot } from "./schema/bot.schema";
 
 export const initBot = async ({ interaction }: InitBotDto) => {
   if (!interaction?.guildId) {
-    throw BotGuildNotFoundError
+    throw new Error(BotGuildNotFoundError)
   }
   try {
     const existingBot = await Bot.findOne({ guidId: interaction.guildId });
     if (existingBot) {
-      throw BotWasInitInThisServerError
+      throw new Error(BotWasInitInThisServerError)
     }
 
     await createBot({
@@ -22,7 +21,7 @@ export const initBot = async ({ interaction }: InitBotDto) => {
     if (e instanceof Error) {
       throw e
     }
-    throw BotCreateError
+    throw new Error(BotCreateError)
   }
 }
 

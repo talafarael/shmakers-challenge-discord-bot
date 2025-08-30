@@ -1,0 +1,6 @@
+export { initBot } from "./bot.service"
+export { type IBot, Bot, type BotDocument } from "./schema/bot.schema"
+export { createBot } from "./repository/bot.repository"
+export { BotGuildNotFoundError, BotCreateError, BotWasInitInThisServerError, BotNotFoundError } from "./errors/bot.error"
+export type { CreateBotDto, InitBotDto } from "./dto/bot.dto"
+export { initBotMessage, initErrorBotMessage } from "./bot-messages/bot"

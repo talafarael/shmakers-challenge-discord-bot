@@ -1,3 +1,4 @@
+import { BotDocument } from "@/bot/schema/bot.schema";
 import { model, Schema, Types } from "mongoose"
 
 const dailyChallengeSchema = new Schema({

@@ -18,7 +18,7 @@ export interface KataListResponse {
   data: KataEntry[];
 }
 //user
-export interface CodewarsUser {
+export interface CodeWarsUser {
   id: string;
   username: string;
   name: string;
